@@ -1,6 +1,6 @@
 #Log Analyzer in python... Auswertung von INFO, WARNING oder FEHLER - Meldungen
 
-#Erzeugen von eigenen Log's
+#Erzeugen von eigenen Log's für Tests
 import logging
 
 logging.basicConfig(
@@ -24,6 +24,12 @@ def parse_line(line):
         "level": parts[2],
         "message": parts[3].strip()
     }
+
+'''
+#Funktion um nur ERROR's auszulesen
+def error_only(log):
+    return log["level"] == "ERROR"
+'''
 
 #Lesen des Log's Zeile für Zeile
 with open("app.log", "r") as file:
