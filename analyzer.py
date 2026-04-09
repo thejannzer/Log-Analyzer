@@ -25,16 +25,27 @@ def parse_line(line):
         "message": parts[3].strip()
     }
 
-'''
-#Funktion um nur ERROR's auszulesen
-def error_only(log):
-    return log["level"] == "ERROR"
-'''
+request = input("INFO, WARNING, ERROR oder Alles?: ")
 
 #Lesen des Log's Zeile für Zeile
 with open("app.log", "r") as file:
     for line in file:
         log = parse_line(line)
-        if log:
-            print(log)
 
+        if not log:
+            continue
+
+        if request.lower() == "error":
+            if log["level"] == "ERROR":
+                print(log)
+        
+        if request.lower() == "info":
+            if log["level"] == "INFO":
+                print(log)
+
+        if request.lower() == "warning":
+            if log["level"] == "WARNING":
+                print(log)
+        
+        if request.lower() == "alles":
+            print(log)
